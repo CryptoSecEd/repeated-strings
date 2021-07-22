@@ -64,8 +64,6 @@ def main(argv):
 
     parts = {}
 
-    longest("abcdefghijklmnopqrtstuvwxyz",3,6,2)
-
     # Obtain all text from the source document, whether it is a .docx or
     # a text file
     if (args.docx):

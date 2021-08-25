@@ -6,12 +6,13 @@
 
 import re
 import sys
+
 from argparse import ArgumentParser
 import docx
 
 
-def longest(text, i, j, min_len):
-    """ Find the longest length for which the substrings at two offsets
+def longest(text: str, i: int, j: int, min_len: int) -> int:
+    """Find the longest length for which the substrings at two offsets
     are the same.
 
     :param text: The string in question
@@ -27,23 +28,23 @@ def longest(text, i, j, min_len):
     :rtype: ``int``
     """
     length = min_len
-    first = text[i:i+length]
-    second = text[j:j+length]
+    first = text[i:i + length]
+    second = text[j:j + length]
     if first != second:
-        raise ValueError("Initial string mismatch in longest(): %s %s"
-                         % (first, second))
+        raise ValueError("Initial string mismatch in longest(): " +
+                         f"{first} {second}")
     same = True
     while same:
-        length = length+1
-        first = text[i:i+length]
-        second = text[j:j+length]
+        length = length + 1
+        first = text[i:i + length]
+        second = text[j:j + length]
         if first != second:
             same = False
-    length = length-1
-    position1 = int(100*i/len(text))
-    position2 = int(100*j/len(text))
-    print("Match of length: %d at offsets %d %d (%d%% and %d%%)"
-          % (length, i, j, position1, position2))
+    length = length - 1
+    position1 = int((100*i)/len(text))
+    position2 = int((100*j)/len(text))
+    print(f"Match of length: {length} at offsets {i} {j} ({position1}% and" +
+          f" {position2}%)")
     print(first[:-1])
     return length
 
@@ -76,7 +77,7 @@ def main():
         try:
             doc = docx.Document(args.source)
         except IOError:
-            print("Could not open file '%s'" % args.source)
+            print(f"Could not open file '{args.source}'")
             sys.exit(1)
         all_paras = doc.paragraphs
         for para in all_paras:
@@ -86,7 +87,7 @@ def main():
         try:
             file_in = open(args.source, 'r')
         except IOError:
-            print("Could not open file '%s'" % args.source)
+            print("Could not open file {args.source}")
             sys.exit(1)
         all_text = file_in.read()
         letters_only = "".join(re.findall("[a-zA-Z]+", all_text))
@@ -110,6 +111,7 @@ def main():
                 length = longest(letters_only, parts[current], i, args.minlen)
             else:
                 parts[current] = i
+    print(parts)
 
 
 if __name__ == "__main__":

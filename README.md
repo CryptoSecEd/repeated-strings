@@ -17,7 +17,7 @@ $ python3 repeated_strings.py --docx --minlen 20 --source <docx file>
 ```
 ## Credits
 
- - Gz75y45ms3kc
+ - CryptoSecEd/Gz75y45ms3kc
  - jddddddddddd
  - stgraff
  - ectomancer

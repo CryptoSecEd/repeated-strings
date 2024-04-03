@@ -111,7 +111,7 @@ def main():
                 length = longest(letters_only, parts[current], i, args.minlen)
             else:
                 parts[current] = i
-    print(parts)
+    # print(parts)
 
 
 if __name__ == "__main__":
